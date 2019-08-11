@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .nav {
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(to bottom, #b66c2f, #e42b81);
+      flex: start;
+      width: 100px;
+      height: 100vh;
+      align-items: center;
+  }
+
+  .profile {
+      margin: 20px;
+  }
+
+  .home-post{
+      display: flex;
+      flex-direction: column;
+  }
+
+  .home-btn, .post-btn{
+    margin: 20px;
+  }
+
+  .logout-btn{
+      display: flex;
+      flex-direction: column;
+  }
+
+  .pic {
+      width: 90px;;
+      height: 90px;
+  }
