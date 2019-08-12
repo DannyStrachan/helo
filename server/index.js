@@ -21,7 +21,8 @@ app.use(session({
 // ENDPOINTS
 app.post('/auth/register', authCtrl.register)
 app.post('/auth/login', authCtrl.login)
-app.get('/api/posts', pCtrl.getPosts)
+app.get('/api/posts/allPosts', pCtrl.getPosts)
+app.post('/api/posts/create', pCtrl.createPost);
 
 
 // app.delete('/auth/logout', authCtrl.logout)

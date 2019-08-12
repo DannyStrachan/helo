@@ -16,6 +16,11 @@
 
   .profile {
       margin: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 169px;
+      justify-content: space-between;
   }
 
   .home-post{
@@ -35,4 +40,15 @@
   .pic {
       width: 90px;;
       height: 90px;
+      border-radius: 50%;
+      background: rgb(17, 17, 17);
+  }
+
+  .nav-buttons{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      margin: 16px;
   }

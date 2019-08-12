@@ -12,13 +12,13 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: rgb(115, 115, 128);
+    background: #1d1d1d;
     width: 100%;
 }
 
 .search{
     display: flex;
-    background: rgb(78, 78, 78);
+    background: rgb(26, 26, 26);
     height: 50px;
     align-items: center;
     width: 69%;
@@ -26,6 +26,7 @@ body{
     padding-left: 20px;
     padding-right: 20px;
     margin-top: 30px;
+    margin-bottom: 8px;
 }
 
 .search-input{
@@ -57,16 +58,25 @@ body{
 
 .post-list{
     padding: 16px;
-    background: green;
+    background: rgb(26, 26, 26);
     width: 69%;
+    height: 100%;
     margin: 0 auto;
+    /* overflow: hidden; */
+}
+
+.post-list a{
+    overflow-y: scroll;
+    height: 100%;
+    width: 100%;
+    box-sizing: content-box;
 }
 
 .post-preview{
     display: flex;
     padding: 16px;
     margin-top: 4px;
-    background: rgb(92, 22, 22);
+    background: rgb(24, 24, 24);
     justify-content: space-between;
     align-items: center;
 }

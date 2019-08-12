@@ -44,7 +44,7 @@ module.exports = {
         const result = bcrypt.compareSync( password, user[0].hash)
         if (result) {
             console.log(result);
-            console.log('user in login:',user);
+            console.log('user in login:',user[0]);
             delete user[0].hash
             req.session.user = user[0]
             return res.status(200).send({ message: "Successful Login!", user: req.session.user, loggedIn: true })

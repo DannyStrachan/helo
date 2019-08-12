@@ -11,6 +11,7 @@ function Nav(props) {
         <img className="pic" src={props.profilePic} alt="" />
         <p className="username">{props.username}</p>
       </div>
+      <div className="nav-buttons">
       <div className="home-post">
         <Link to="/dashboard">
           <button className="home-btn">House</button>
@@ -23,6 +24,7 @@ function Nav(props) {
         <Link to="/">
           <button className="logout-btn">Power</button>
         </Link>
+      </div>
       </div>
     </div>
   );

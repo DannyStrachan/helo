@@ -5,12 +5,8 @@
     post_id,
     title,
     content,
-    post_img,
+    img,
     profile_pic,
     username
 FROM helo_posts hp
-join helo_users hu on hp.author_id = hu.user_id
-SELECT 
-  *
-FROM helo_posts
-join helo_users on hp.author_id = up.user_id
+join helo_users hu on hp.user_id = hu.user_id;
