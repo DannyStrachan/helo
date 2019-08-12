@@ -1,38 +1,52 @@
 import "./Dashboard.css";
 import React, { Component } from "react";
 import axios from "axios";
-import store from '../../ducks/reducer'
+// import store from '../../ducks/store'
 // import Post from '../Post/Post'
-// import {Link} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
+import { connect } from 'react-redux'
+import { setPost, clearEntries } from "../../ducks/reducer"
 
-export default class Dashboard extends Component {
+class Dashboard extends Component {
   constructor(props) {
     super(props);
-    const reduxState = store.getState()
+    // const reduxState = store.getState()
     this.state = {
-      checkBox: true,
-      searchBox: "",
-      listOfPosts: [],
-      id: reduxState.id
+      checkBox: props.checkBox,
+      searchBox: props.searchBox,
+      listOfPosts: props.listOfPosts,
+      id: props.id
     };
   }
+  
 
-  componentDidMount = (reduxState) => {
-    this.setState({
-      checkBox: reduxState.checkBox,
-      searchBox: reduxState.searchBox,
-      listOfPosts: reduxState.listOfPosts,
-      id: reduxState.id
-    })
+  componentDidMount = () => {
+    // store.subscribe(() => {
+    //   store.getState()
+    // })
     this.getPostings(); 
   }
 
-  resetSearch = () => {
+  resetSearch = async () => {
+    console.log('hit reset');
+    // await this.props.clearEntries()
+    await this.setState({
+    
+
+      checkBox: true,
+      searchBox: ""
+    })
+    // store.subscribe(() => {
+    //   store.getState()
+    // })
+    // this.setState({
+    //   searchBox: ""
+    // })
     this.getPostings()
   }
 
   handleInputChange = e => {
-    console.log('state in this.state.searchBox:', this.state.searchBox);
+    // console.log('state in this.state.searchBox:', this.state.searchBox);
 
     const target = e.target;
     const value =
@@ -45,17 +59,20 @@ export default class Dashboard extends Component {
 
   getPostings = async () => {
     console.log('hit get postings');
-    let res = await axios.get(
-      `/api/posts/allPosts?userposts=${this.state.checkBox}&search=${
-        this.state.searchBox
-      }`
-    );
-    this.setState({
-      listOfPosts: res.data
-    });
+    const { checkBox, searchBox } = this.state
+    await axios.get(
+      `/api/posts/allPosts?userposts=${checkBox}&search=${searchBox}`)
+      .then(res => {
+      this.setState({
+        listOfPosts: res.data,
+        searchBox: ""
+      })
+      console.log("getting your listings", res.data)
+    })
   };
 
   render() {
+    console.log('this is this props:', this.props);
     const posts = this.state.listOfPosts.map((e, i) => {
       return (
         <div key={i} className="post-preview">
@@ -77,6 +94,7 @@ export default class Dashboard extends Component {
               type="text" 
               name="searchBox" 
               placeholder="Search By Title" 
+              value={this.state.searchBox}
               onChange={e => this.handleInputChange(e)}
             />
             <button className="magnify" onClick={this.getPostings} >Search</button>
@@ -100,6 +118,16 @@ export default class Dashboard extends Component {
     );
   }
 }
+
+function mapStateToProps(reduxState) {
+  const { checkBox, searchBox, listOfPosts, id } = reduxState;
+  return { checkBox, searchBox, listOfPosts, id };
+}
+
+export default connect(
+  mapStateToProps,
+  { setPost, clearEntries }
+)(withRouter(Dashboard));
 
 // #parent{
 //   width: 100%;

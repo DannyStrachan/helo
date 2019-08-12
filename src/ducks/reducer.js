@@ -30,6 +30,7 @@ export function setPost(state) {
 }
 
 export function clearEntries() {
+    console.log('hit clear entries function in reducer')
     return {
         type: CANCEL_CHANGES
     }
@@ -46,7 +47,7 @@ export default ( state = initialState, action ) => {
             const { title, img, content } = payload
             return { ...state, title: title, img: img, content: content}
         case CANCEL_CHANGES:
-            return {...state}
+            return {...state, checkBox: true, searchBox: "", listOfPosts: []}
         default: return state
     }
 }
