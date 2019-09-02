@@ -36,7 +36,8 @@ class Form extends Component {
     axios
       .post("/api/posts/create", { title, img, content })
       .then(() => this.props.clearEntries())
-      .catch(() => console.log(`Add Post Failed!`));
+      .catch(() => console.log(`Add Post Failed!`))
+      .then(window.location.href = `http://localhost:3000/#/dashboard`)
   };
 
   handleInputChange = e => {

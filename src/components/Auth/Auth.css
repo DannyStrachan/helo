@@ -1,5 +1,89 @@
-.auth{
-    background: linear-gradient(to bottom, #b66c2f, #e42b81);
+.auth{    background-image: linear-gradient(99deg, rgb(137, 0, 52), rgb(137, 37, 0) 40%, rgb(137, 98, 0) 73%, rgb(116, 137, 0));
     width: 100%;
     height: 100vh;
 }
+
+.box h1{
+  font-size: 69px;
+}
+
+.box p{
+  font-size: 16px;
+}
+
+.box{
+    width: 35vw;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px 0px, rgba(0, 0, 0, 0.26) 0px 10px 10px 0px;
+    background-image: linear-gradient(97deg, rgb(138, 11, 0), rgb(137, 98, 0));
+    margin: 0 auto;
+    margin-top: 24vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 9px;
+    /* box-shadow: 0 0 6px rgb(0, 0, 0); */
+    padding: 30px;
+    cursor: crosshair;
+}
+
+.user-input{
+  display: flex;
+  justify-content: space-between;
+  padding: 3px;
+}
+
+form{
+  width: 230px;
+}
+
+.buttons{
+  width: 48%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 9px;
+}
+
+form input{
+  border: none;
+}
+
+.login-btn, .register-btn{
+  
+  background-image: radial-gradient(circle at 50% -46%, rgb(61, 64, 67), rgb(57, 61, 64));
+  /* width: 33px; */
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  border: none;
+}
+
+.box {
+    transition: transform .6s ease-in-out;
+  }
+  /* .box:hover {
+    transform: rotate(90deg);
+    transform: rotate(-360deg);
+  } */
+
+  /* .box:hover {
+    transform: skew(45deg); 
+    transform: skewX(45deg);
+    transform: skewY(-50deg);
+    transform: skew(45deg, -50deg);
+  } */
+
+ 
+
+  /* element {
+    transition: transform 0.5s linear;
+  } */
+  /* .box:hover {
+    transform: translateX(15px);
+    transform: translateY(50px);
+    transform: translate(15px, -40px);
+  } */
+  .box:hover {
+    /* transform: scaleX(0.5);
+    transform: scaleY(0.5); */
+    transform: scale(1.3);
+    /* transform: scale(0.5, 0); */
+  }

@@ -1,6 +1,7 @@
 module.exports = {
     getPosts: (req, res, next) => {
         const {userposts, search} = req.query;
+        const {user_id} = req.session.user
         // const {session} = req; 
         const sqlSearch = '%' + search + '%'
          // makes it so the app will search the database for post titles with the search string anywhere in there
@@ -9,7 +10,6 @@ module.exports = {
             db.all_title_posts(sqlSearch)
             .then( results => {
                 res.status(200).send(results)
-                console.log('these are the results filtered', results);
             })
             .catch (err => {
                 res.status(500).send(err)
@@ -19,7 +19,23 @@ module.exports = {
             db.all_posts()
             .then(results => {
                 res.status(200).send(results)
-                console.log('these are the results', results);
+            })
+            .catch (err => {
+                res.status(500).send(err)
+            })
+        } else if (userposts === 'false' && search) {
+            db.all_title_posts_wout_id(sqlSearch, user_id)
+            .then( results => {
+                res.status(200).send(results)
+            })
+            .catch (err => {
+                res.status(500).send(err)
+                
+            })
+        } else {
+            db.all_posts_wout_id(user_id)
+            .then(results => {
+                res.status(200).send(results)
             })
             .catch (err => {
                 res.status(500).send(err)
@@ -32,6 +48,14 @@ module.exports = {
         const db = req.app.get('db');
         db.create_posts([ user.user_id, title, img, content ])
         .then(res.status(200).send('Adding a new post')) 
+    },
+    async getPost(req, res, next) {
+        let {postId} = req.params
+        console.log('req:', postId);
+        const db = req.app.get('db')
+        let post = await db.find_post(+postId)
+        res.send(post)
+        console.log('post:', post);
     }
 }
 
